@@ -98,6 +98,10 @@ final public class PeerKit {
         do {
             try session.underlyingSession.send(data, toPeers: peers, with: .reliable)
         } catch {
+            DispatchQueue.main.async { [unowned self] in
+                self.delegate?.peerKit(self, didFailToSendEvent: event, toPeers: peers)
+            }
+
             print("\(error)")
         }
     }

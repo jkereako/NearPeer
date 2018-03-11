@@ -71,6 +71,10 @@ extension ViewController: PeerKitDelegate {
     func peerKit(_ peerKit: PeerKit, didFailToAdvertise error: Error) {
         status.text = "Failed to advertise"
     }
+
+    func peerKit(_ peerKit: PeerKit, didFailToSendEvent event: String, toPeers peers: [MCPeerID]) {
+        status.text = "Failed to send event \(event)"
+    }
 }
 
 // MARK: - Target-actions

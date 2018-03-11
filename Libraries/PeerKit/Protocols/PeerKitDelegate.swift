@@ -17,4 +17,5 @@ public protocol PeerKitDelegate: class {
     func peerKit(_ peerKit: PeerKit, didRejectInvitationFromPeer peer: MCPeerID)
     func peerKit(_ peerKit: PeerKit, didFailToAdvertise error: Error)
     func peerKit(_ peerKit: PeerKit, didFailToBrowse error: Error)
+    func peerKit(_ peerKit: PeerKit, didFailToSendEvent event: String, toPeers peers: [MCPeerID])
 }
