@@ -11,12 +11,15 @@
     </dependencies>
     <customFonts key="customFonts">
         <array key="AvenirNext.ttc">
+            <string>AvenirNext-Bold</string>
             <string>AvenirNext-Medium</string>
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController" customModule="MultipeerConnectivity" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController" customModule="NearPeer" customModuleProvider="target">
             <connections>
+                <outlet property="serviceName" destination="G4h-hh-K1h" id="SVs-gf-v1S"/>
+                <outlet property="status" destination="n0X-vy-kLA" id="aAa-Tc-cTp"/>
                 <outlet property="view" destination="iN0-l3-epB" id="7J5-Bg-sGL"/>
             </connections>
         </placeholder>
@@ -25,9 +28,15 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0X-vy-kLA">
-                    <rect key="frame" x="157.5" y="327.5" width="61" height="33"/>
-                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="24"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4h-hh-K1h">
+                    <rect key="frame" x="121.5" y="267" width="133.5" height="27.5"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="20"/>
+                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected to Jeff's iPhone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0X-vy-kLA">
+                    <rect key="frame" x="59" y="330" width="259" height="29"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="21"/>
                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -36,6 +45,8 @@
             <constraints>
                 <constraint firstItem="n0X-vy-kLA" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="Lko-TY-uh5"/>
                 <constraint firstItem="n0X-vy-kLA" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="bTl-hk-Sjq"/>
+                <constraint firstItem="G4h-hh-K1h" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="fsF-lo-87d"/>
+                <constraint firstItem="n0X-vy-kLA" firstAttribute="top" secondItem="G4h-hh-K1h" secondAttribute="bottom" constant="35.5" id="nbj-8M-hu0"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>

@@ -25,6 +25,13 @@ final class Browser: NSObject {
         nearbyServiceBrowser.delegate = self
     }
 
+    deinit {
+        #if DEBUG
+            let url = URL(fileURLWithPath: #file)
+            print("Deinit \(url.lastPathComponent)")
+        #endif
+    }
+
     func start() {
         nearbyServiceBrowser.startBrowsingForPeers()
     }

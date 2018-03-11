@@ -25,6 +25,12 @@ final class Advertiser: NSObject {
         super.init()
     }
 
+    deinit {
+        #if DEBUG
+            let url = URL(fileURLWithPath: #file)
+            print("Deinit \(url.lastPathComponent)")
+        #endif
+    }
 
     func start() {
         advertiser.delegate = self
@@ -42,7 +48,7 @@ extension Advertiser: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser,
                     didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?,
                     invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-
+        
         let accept = session.myPeerID.hashValue > peerID.hashValue
 
         invitationHandler(accept, session.underlyingSession)

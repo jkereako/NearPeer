@@ -12,7 +12,7 @@
 
 final public class PeerKit {
     public weak var delegate: PeerKitDelegate?
-
+    public let serviceName: String
     let displayName: String
     let session: Session
     let advertiser: Advertiser
@@ -54,7 +54,7 @@ final public class PeerKit {
         #else
             displayName = Host.current().localizedName ?? ""
         #endif
-
+        self.serviceName = serviceName
         session = Session(displayName: displayName, serviceName: serviceName)
         advertiser = Advertiser(session: session)
         browser = Browser(session: session)
@@ -62,6 +62,11 @@ final public class PeerKit {
         session.delegate = self
         advertiser.delegate = self
         browser.delegate = self
+    }
+
+    deinit {
+        let url = URL(fileURLWithPath: #file)
+        print("Deinit \(url.lastPathComponent)")
     }
 
     public func advertise() {

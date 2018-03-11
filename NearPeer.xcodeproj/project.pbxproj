@@ -169,8 +169,8 @@
 		62D3111A20556DF20024D4E4 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				626332892054E89300757EA5 /* SessionDelegate.swift */,
 				62D3111820556DEC0024D4E4 /* PeerKitDelegate.swift */,
+				626332892054E89300757EA5 /* SessionDelegate.swift */,
 				62D3111B205574600024D4E4 /* AdvertiserDelegate.swift */,
 				62D3111D205575030024D4E4 /* BrowserDelegate.swift */,
 			);
@@ -448,6 +448,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/SupportFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -464,6 +465,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/SupportFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

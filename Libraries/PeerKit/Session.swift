@@ -10,14 +10,15 @@ import MultipeerConnectivity
 
 final class Session: NSObject {
     weak var delegate: SessionDelegate?
-    let myPeerID: MCPeerID
+    var myPeerID: MCPeerID { return underlyingSession.myPeerID }
+    var connectedPeers: [MCPeerID] { return underlyingSession.connectedPeers }
     let underlyingSession: MCSession
     let serviceName: String
     
     init(displayName: String, serviceName: String) {
         self.serviceName = serviceName
 
-        myPeerID = MCPeerID(displayName: displayName)
+        let myPeerID = MCPeerID(displayName: displayName)
         underlyingSession = MCSession(
             peer: myPeerID, securityIdentity: nil, encryptionPreference: .required
         )
@@ -25,6 +26,13 @@ final class Session: NSObject {
         super.init()
         
         underlyingSession.delegate = self
+    }
+
+    deinit {
+        #if DEBUG
+            let url = URL(fileURLWithPath: #file)
+            print("Deinit \(url.lastPathComponent)")
+        #endif
     }
     
     func disconnect() {
@@ -54,7 +62,7 @@ extension Session: MCSessionDelegate {
     
     func session(_ session: MCSession, didReceive stream: InputStream,
                  withName streamName: String, fromPeer peerID: MCPeerID) {
-        // unused
+        //   
     }
     
     func session(_ session: MCSession, didStartReceivingResourceWithName
