@@ -54,7 +54,10 @@ extension Advertiser: MCNearbyServiceAdvertiserDelegate {
         invitationHandler(accept, session.underlyingSession)
 
         if accept {
+            delegate?.didAcceptInvitation(fromPeer: peerID)
             stop()
+        } else {
+            delegate?.didRejectInvitation(fromPeer: peerID)
         }
     }
 

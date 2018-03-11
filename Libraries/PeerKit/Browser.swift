@@ -46,6 +46,10 @@ final class Browser: NSObject {
 extension Browser: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID,
                  withDiscoveryInfo info: [String : String]?) {
+        #if DEBUG
+            print("Found peer: \(peerID.displayName)")
+        #endif
+
         browser.invitePeer(
             peerID, to: session.underlyingSession, withContext: nil, timeout: peerInvitationTimeout
         )

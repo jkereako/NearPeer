@@ -137,9 +137,21 @@ extension PeerKit: SessionDelegate {
 
 // MARK: - AdvertiserDelegate
 extension PeerKit: AdvertiserDelegate {
+    func didAcceptInvitation(fromPeer peer: MCPeerID) {
+        DispatchQueue.main.async { [unowned self] in
+            self.delegate?.peerKit(self, didAcceptInvitationFromPeer: peer)
+        }
+    }
+
+    func didRejectInvitation(fromPeer peer: MCPeerID) {
+        DispatchQueue.main.async { [unowned self] in
+            self.delegate?.peerKit(self, didRejectInvitationFromPeer: peer)
+        }
+    }
+
     func didFailToAdvertise(error: Error) {
         DispatchQueue.main.async { [unowned self] in
-            self.delegate?.didFailToAdvertise(error: error)
+            self.delegate?.peerKit(self, didFailToAdvertise: error)
         }
     }
 }
@@ -148,7 +160,7 @@ extension PeerKit: AdvertiserDelegate {
 extension PeerKit: BrowserDelegate {
     func didFailToBrowse(error: Error) {
         DispatchQueue.main.async { [unowned self] in
-            self.delegate?.didFailToBrowse(error: error)
+            self.delegate?.peerKit(self, didFailToBrowse: error)
         }
     }
 }

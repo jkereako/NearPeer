@@ -40,20 +40,14 @@ final class ViewController: UIViewController {
 
 // MARK: - SessionDelegate
 extension ViewController: PeerKitDelegate {
-    func didFailToAdvertise(error: Error) {
-        status.text = "Failed to advertise"
-        print("\(error)")
+    func peerKit(_ peerKit: PeerKit, didAcceptInvitationFromPeer peer: MCPeerID) {
+        status.text = "Accepted invitation from \(peer.displayName)"
     }
 
-    func didFailToBrowse(error: Error) {
-        status.text = "Failed to browse"
-        print("\(error)")
+    func peerKit(_ peerKit: PeerKit, didRejectInvitationFromPeer peer: MCPeerID) {
+        status.text = "Rejected invitation from \(peer.displayName)"
     }
 
-    func peerKit(_ peerKit: PeerKit, didReceiveEvent event: String, withObject object: AnyObject) {
-        status.text = "Received \(event)"
-    }
-    
     func peerKit(_ peerKit: PeerKit, isConnectingToPeer peer: MCPeerID) {
         status.text = "Connecting to \(peer.displayName)"
     }
@@ -65,5 +59,23 @@ extension ViewController: PeerKitDelegate {
     func peerKit(_ peerKit: PeerKit, didDisconnectFromPeer peer: MCPeerID) {
         status.text = "Disconnected from \(peer.displayName)"
     }
+
+    func peerKit(_ peerKit: PeerKit, didReceiveEvent event: String, withObject object: AnyObject) {
+        status.text = "Received event \(event)"
+    }
+
+    func peerKit(_ peerKit: PeerKit, didFailToBrowse error: Error) {
+        status.text = "Failed to browse"
+    }
+
+    func peerKit(_ peerKit: PeerKit, didFailToAdvertise error: Error) {
+        status.text = "Failed to advertise"
+    }
 }
 
+// MARK: - Target-actions
+private extension ViewController {
+    @IBAction func sendEventAction(_ sender: UIButton) {
+        peerKit.sendEvent("Greeting")
+    }
+}
