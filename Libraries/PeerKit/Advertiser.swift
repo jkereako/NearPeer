@@ -47,4 +47,9 @@ extension Advertiser: MCNearbyServiceAdvertiserDelegate {
             stop()
         }
     }
+
+    func advertiser(_ advertiser: MCNearbyServiceAdvertiser,
+                    didNotStartAdvertisingPeer error: Error) {
+        print("\(error)")
+    }
 }

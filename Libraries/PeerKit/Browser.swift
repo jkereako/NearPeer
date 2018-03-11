@@ -44,5 +44,9 @@ extension Browser: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
         // unused
     }
+
+    func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
+        print("\(errror)")
+    }
 }
 
