@@ -9,12 +9,13 @@
 import MultipeerConnectivity
 
 final class Browser: NSObject {
-    private let mcSession: MCSession
+    weak var delegate: BrowserDelegate?
+    private let session: Session
     private let nearbyServiceBrowser: MCNearbyServiceBrowser
     private let peerInvitationTimeout: Double = 30
 
     init(session: Session) {
-        self.mcSession = session.mcSession
+        self.session = session
         nearbyServiceBrowser = MCNearbyServiceBrowser(
             peer: session.myPeerID, serviceType: session.serviceName
         )
@@ -38,7 +39,9 @@ final class Browser: NSObject {
 extension Browser: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID,
                  withDiscoveryInfo info: [String : String]?) {
-        browser.invitePeer(peerID, to: mcSession, withContext: nil, timeout: peerInvitationTimeout)
+        browser.invitePeer(
+            peerID, to: session.underlyingSession, withContext: nil, timeout: peerInvitationTimeout
+        )
     }
 
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
@@ -46,7 +49,7 @@ extension Browser: MCNearbyServiceBrowserDelegate {
     }
 
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
-        print("\(errror)")
+        delegate?.didFailToBrowse(error: error)
     }
 }
 

@@ -11,7 +11,7 @@
 #endif
 
 final public class PeerKit {
-    public weak var delegate: SessionDelegate?
+    public weak var delegate: PeerKitDelegate?
 
     let displayName: String
     let session: Session
@@ -59,7 +59,9 @@ final public class PeerKit {
         advertiser = Advertiser(session: session)
         browser = Browser(session: session)
 
-        session.delegate = delegate
+        session.delegate = self
+        advertiser.delegate = self
+        browser.delegate = self
     }
 
     public func advertise() {
@@ -75,5 +77,62 @@ final public class PeerKit {
         advertiser.stop()
         browser.stop()
         session.disconnect()
+    }
+
+
+    public func sendEvent(_ event: String, withObject object: AnyObject? = nil) {
+        let peers = session.underlyingSession.connectedPeers
+        var rootObject: [String: AnyObject] = ["event": event as AnyObject]
+
+        if let object: AnyObject = object {
+            rootObject["object"] = object
+        }
+
+        let data = NSKeyedArchiver.archivedData(withRootObject: rootObject)
+
+        do {
+            try session.underlyingSession.send(data, toPeers: peers, with: .reliable)
+        } catch {
+            print("\(error)")
+        }
+    }
+}
+
+// MARK: - SessionDelegate
+extension PeerKit: SessionDelegate {
+    public func isConnecting(toPeer peer: MCPeerID) {
+        delegate?.peerKit(self, isConnectingToPeer: peer)
+    }
+
+    public func didConnect(toPeer peer: MCPeerID) {
+        delegate?.peerKit(self, didConnectToPeer: peer)
+    }
+
+    public func didDisconnect(fromPeer peer: MCPeerID) {
+        delegate?.peerKit(self, didDisconnectFromPeer: peer)
+    }
+
+    public func didReceiveData(data: Data, fromPeer peer: MCPeerID) {
+        guard let dict = NSKeyedUnarchiver.unarchiveObject(with: data) as? [String: AnyObject],
+            let event = dict["event"] as? String, let object = dict["object"] else {
+                return
+        }
+
+        delegate?.peerKit(self, didReceiveEvent: event, withObject: object)
+    }
+}
+
+// MARK: - AdvertiserDelegate
+extension PeerKit: AdvertiserDelegate {
+    func didFailToAdvertise(error: Error) {
+        delegate?.didFailToAdvertise(error: error)
+    }
+
+}
+
+// MARK: - BrowserDelegate
+extension PeerKit: BrowserDelegate {
+    func didFailToBrowse(error: Error) {
+        delegate?.didFailToBrowse(error: error)
     }
 }

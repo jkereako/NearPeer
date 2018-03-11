@@ -11,23 +11,26 @@ import MultipeerConnectivity
 final class Session: NSObject {
     weak var delegate: SessionDelegate?
     let myPeerID: MCPeerID
-    let mcSession: MCSession
+    let underlyingSession: MCSession
     let serviceName: String
     
     init(displayName: String, serviceName: String) {
         self.serviceName = serviceName
+
         myPeerID = MCPeerID(displayName: displayName)
-        mcSession = MCSession(peer: myPeerID)
+        underlyingSession = MCSession(
+            peer: myPeerID, securityIdentity: nil, encryptionPreference: .required
+        )
         
         super.init()
         
-        mcSession.delegate = self
+        underlyingSession.delegate = self
     }
     
     func disconnect() {
         self.delegate = nil
-        mcSession.delegate = nil
-        mcSession.disconnect()
+        underlyingSession.delegate = nil
+        underlyingSession.disconnect()
     }
 }
 

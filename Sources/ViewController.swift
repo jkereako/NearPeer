@@ -24,25 +24,34 @@ final class ViewController: UIViewController {
         let peerKit = PeerKit(serviceName: "dummy-service")
         peerKit.delegate = self
         peerKit.advertise()
+        peerKit.browse()
     }
 }
 
 // MARK: - SessionDelegate
-extension ViewController: SessionDelegate {
-    func isConnecting(toPeer peer: MCPeerID) {
-        print("Connecting")
+extension ViewController: PeerKitDelegate {
+    func didFailToAdvertise(error: Error) {
+        print("\(error)")
     }
 
-    func didConnect(toPeer peer: MCPeerID) {
-        print("Connected")
+    func didFailToBrowse(error: Error) {
+        print("\(error)")
     }
 
-    func didDisconnect(fromPeer peer: MCPeerID) {
-        print("Disconnected")
+    func peerKit(_ peerKit: PeerKit, didReceiveEvent event: String, withObject object: AnyObject) {
+        print("Received \(event)")
     }
 
-    func didReceiveData(data: Data, fromPeer peer: MCPeerID) {
-        print("Data received")
+    func peerKit(_ peerKit: PeerKit, isConnectingToPeer peer: MCPeerID) {
+        print("Connecting to \(peer.displayName)")
+    }
+
+    func peerKit(_ peerKit: PeerKit, didConnectToPeer peer: MCPeerID) {
+        print("Connected to \(peer.displayName)")
+    }
+
+    func peerKit(_ peerKit: PeerKit, didDisconnectFromPeer peer: MCPeerID) {
+        print("Disconnected from \(peer.displayName)")
     }
 }
 
