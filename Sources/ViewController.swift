@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import PeerKit
 
 final class ViewController: UIViewController {
-
     init() {
         super.init(nibName: "View", bundle: nil)
     }
@@ -17,4 +17,17 @@ final class ViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let peerKit = PeerKit(serviceName: "dummy-service")
+        peerKit.advertise()
+        
+    }
 }
+
+//extension ViewController: SessionDelegate {
+//
+//}
+
