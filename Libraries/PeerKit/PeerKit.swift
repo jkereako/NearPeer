@@ -11,7 +11,7 @@
 #endif
 
 final public class PeerKit {
-    weak var delegate: SessionDelegate?
+    public weak var delegate: SessionDelegate?
 
     let displayName: String
     let session: Session

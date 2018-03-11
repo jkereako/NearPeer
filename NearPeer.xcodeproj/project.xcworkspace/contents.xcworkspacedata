@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MultipeerConnectivity.xcodeproj">
+      location = "self:/Users/jkereako/src/swift/MultipeerConnectivity/NearPeer.xcodeproj">
    </FileRef>
 </Workspace>

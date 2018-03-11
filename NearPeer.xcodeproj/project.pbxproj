@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		621FDF1D2054F18D0076C404 /* PeerKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626332852054E86300757EA5 /* PeerKit.swift */; };
+		621FDF1E2054F18D0076C404 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626332892054E89300757EA5 /* SessionDelegate.swift */; };
+		621FDF1F2054F18D0076C404 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626332872054E87D00757EA5 /* Session.swift */; };
+		621FDF202054F18D0076C404 /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6263328B2054E8AB00757EA5 /* Browser.swift */; };
+		621FDF212054F18D0076C404 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6263328D2054E8BF00757EA5 /* Advertiser.swift */; };
 		6263325D2054E37800757EA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6263325C2054E37800757EA5 /* AppDelegate.swift */; };
 		6263325F2054E37800757EA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6263325E2054E37800757EA5 /* ViewController.swift */; };
 		626332642054E37800757EA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 626332632054E37800757EA5 /* Assets.xcassets */; };
@@ -15,11 +20,6 @@
 		6263327B2054E81E00757EA5 /* PeerKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 626332792054E81D00757EA5 /* PeerKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6263327E2054E81E00757EA5 /* PeerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 626332772054E81D00757EA5 /* PeerKit.framework */; };
 		6263327F2054E81E00757EA5 /* PeerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 626332772054E81D00757EA5 /* PeerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		626332862054E86300757EA5 /* PeerKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626332852054E86300757EA5 /* PeerKit.swift */; };
-		626332882054E87D00757EA5 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626332872054E87D00757EA5 /* Session.swift */; };
-		6263328A2054E89300757EA5 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626332892054E89300757EA5 /* SessionDelegate.swift */; };
-		6263328C2054E8AB00757EA5 /* Browser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6263328B2054E8AB00757EA5 /* Browser.swift */; };
-		6263328E2054E8BF00757EA5 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6263328D2054E8BF00757EA5 /* Advertiser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +47,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		626332592054E37800757EA5 /* MultipeerConnectivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultipeerConnectivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		626332592054E37800757EA5 /* NearPeer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearPeer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6263325C2054E37800757EA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6263325E2054E37800757EA5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		626332632054E37800757EA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 		6263325A2054E37800757EA5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				626332592054E37800757EA5 /* MultipeerConnectivity.app */,
+				626332592054E37800757EA5 /* NearPeer.app */,
 				626332772054E81D00757EA5 /* PeerKit.framework */,
 			);
 			name = Products;
@@ -135,8 +135,8 @@
 			children = (
 				6263328F2054E8D500757EA5 /* SupportFiles */,
 				626332852054E86300757EA5 /* PeerKit.swift */,
-				626332872054E87D00757EA5 /* Session.swift */,
 				626332892054E89300757EA5 /* SessionDelegate.swift */,
+				626332872054E87D00757EA5 /* Session.swift */,
 				6263328B2054E8AB00757EA5 /* Browser.swift */,
 				6263328D2054E8BF00757EA5 /* Advertiser.swift */,
 			);
@@ -174,9 +174,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		626332582054E37800757EA5 /* MultipeerConnectivity */ = {
+		626332582054E37800757EA5 /* NearPeer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6263326B2054E37800757EA5 /* Build configuration list for PBXNativeTarget "MultipeerConnectivity" */;
+			buildConfigurationList = 6263326B2054E37800757EA5 /* Build configuration list for PBXNativeTarget "NearPeer" */;
 			buildPhases = (
 				626332552054E37800757EA5 /* Sources */,
 				626332562054E37800757EA5 /* Frameworks */,
@@ -188,9 +188,9 @@
 			dependencies = (
 				6263327D2054E81E00757EA5 /* PBXTargetDependency */,
 			);
-			name = MultipeerConnectivity;
+			name = NearPeer;
 			productName = MultipeerConnectivity;
-			productReference = 626332592054E37800757EA5 /* MultipeerConnectivity.app */;
+			productReference = 626332592054E37800757EA5 /* NearPeer.app */;
 			productType = "com.apple.product-type.application";
 		};
 		626332762054E81D00757EA5 /* PeerKit */ = {
@@ -232,7 +232,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 626332542054E37800757EA5 /* Build configuration list for PBXProject "MultipeerConnectivity" */;
+			buildConfigurationList = 626332542054E37800757EA5 /* Build configuration list for PBXProject "NearPeer" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -245,7 +245,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				626332582054E37800757EA5 /* MultipeerConnectivity */,
+				626332582054E37800757EA5 /* NearPeer */,
 				626332762054E81D00757EA5 /* PeerKit */,
 			);
 		};
@@ -285,11 +285,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6263328E2054E8BF00757EA5 /* Advertiser.swift in Sources */,
-				6263328C2054E8AB00757EA5 /* Browser.swift in Sources */,
-				6263328A2054E89300757EA5 /* SessionDelegate.swift in Sources */,
-				626332882054E87D00757EA5 /* Session.swift in Sources */,
-				626332862054E86300757EA5 /* PeerKit.swift in Sources */,
+				621FDF212054F18D0076C404 /* Advertiser.swift in Sources */,
+				621FDF202054F18D0076C404 /* Browser.swift in Sources */,
+				621FDF1D2054F18D0076C404 /* PeerKit.swift in Sources */,
+				621FDF1E2054F18D0076C404 /* SessionDelegate.swift in Sources */,
+				621FDF1F2054F18D0076C404 /* Session.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,7 +508,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		626332542054E37800757EA5 /* Build configuration list for PBXProject "MultipeerConnectivity" */ = {
+		626332542054E37800757EA5 /* Build configuration list for PBXProject "NearPeer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				626332692054E37800757EA5 /* Debug */,
@@ -517,7 +517,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6263326B2054E37800757EA5 /* Build configuration list for PBXNativeTarget "MultipeerConnectivity" */ = {
+		6263326B2054E37800757EA5 /* Build configuration list for PBXNativeTarget "NearPeer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6263326C2054E37800757EA5 /* Debug */,

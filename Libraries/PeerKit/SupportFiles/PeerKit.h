@@ -6,7 +6,6 @@
 //  Copyright © 2018 Alexis Digital. All rights reserved.
 //
 
-@import UIKit;
 @import MultipeerConnectivity;
 
 //! Project version number for PeerKit.

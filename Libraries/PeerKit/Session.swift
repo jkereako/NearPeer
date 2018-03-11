@@ -6,6 +6,8 @@
 //  Copyright © 2018 Alexis Digital. All rights reserved.
 //
 
+import MultipeerConnectivity
+
 final class Session: NSObject {
     weak var delegate: SessionDelegate?
     let myPeerID: MCPeerID

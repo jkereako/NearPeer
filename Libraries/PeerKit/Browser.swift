@@ -6,6 +6,8 @@
 //  Copyright © 2018 Alexis Digital. All rights reserved.
 //
 
+import MultipeerConnectivity
+
 final class Browser: NSObject {
     private let mcSession: MCSession
     private let nearbyServiceBrowser: MCNearbyServiceBrowser

@@ -22,12 +22,27 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
 
         let peerKit = PeerKit(serviceName: "dummy-service")
+        peerKit.delegate = self
         peerKit.advertise()
-        
     }
 }
 
-//extension ViewController: SessionDelegate {
-//
-//}
+// MARK: - SessionDelegate
+extension ViewController: SessionDelegate {
+    func isConnecting(toPeer peer: MCPeerID) {
+        print("Connecting")
+    }
+
+    func didConnect(toPeer peer: MCPeerID) {
+        print("Connected")
+    }
+
+    func didDisconnect(fromPeer peer: MCPeerID) {
+        print("Disconnected")
+    }
+
+    func didReceiveData(data: Data, fromPeer peer: MCPeerID) {
+        print("Data received")
+    }
+}
 

@@ -6,6 +6,8 @@
 //  Copyright © 2018 Alexis Digital. All rights reserved.
 //
 
+import MultipeerConnectivity
+
 final class Advertiser: NSObject {
     private let session: Session
     private let advertiser: MCNearbyServiceAdvertiser

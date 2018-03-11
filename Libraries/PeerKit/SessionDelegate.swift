@@ -6,6 +6,8 @@
 //  Copyright © 2018 Alexis Digital. All rights reserved.
 //
 
+import MultipeerConnectivity
+
 public protocol SessionDelegate: class {
     func isConnecting(toPeer peer: MCPeerID)
     func didConnect(toPeer peer: MCPeerID)
