@@ -60,7 +60,7 @@ extension ViewController: PeerKitDelegate {
         status.text = "Disconnected from \(peer.displayName)"
     }
 
-    func peerKit(_ peerKit: PeerKit, didReceiveEvent event: String, withObject object: AnyObject) {
+    func peerKit(_ peerKit: PeerKit, didReceiveEvent event: String, withObject object: AnyObject?) {
         status.text = "Received event \(event)"
     }
 

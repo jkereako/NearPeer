@@ -83,8 +83,7 @@ final public class PeerKit {
         browser.stop()
         session.disconnect()
     }
-    
-    
+
     public func sendEvent(_ event: String, withObject object: AnyObject? = nil) {
         let peers = session.underlyingSession.connectedPeers
         var rootObject: [String: AnyObject] = ["event": event as AnyObject]
@@ -129,12 +128,13 @@ extension PeerKit: SessionDelegate {
     
     public func didReceiveData(data: Data, fromPeer peer: MCPeerID) {
         guard let dict = NSKeyedUnarchiver.unarchiveObject(with: data) as? [String: AnyObject],
-            let event = dict["event"] as? String, let object = dict["object"] else {
+            let event = dict["event"] as? String else {
+                assertionFailure("Expected an event")
                 return
         }
         
         DispatchQueue.main.async { [unowned self] in
-            self.delegate?.peerKit(self, didReceiveEvent: event, withObject: object)
+            self.delegate?.peerKit(self, didReceiveEvent: event, withObject: dict["object"] )
         }
     }
 }
