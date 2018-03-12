@@ -9,7 +9,7 @@
 import MultipeerConnectivity
 
 final class AdvertiserManager: NSObject {
-    weak var delegate: AdvertiserDelegate?
+    weak var delegate: AdvertiserManagerDelegate?
     private let sessionManager: SessionManager
     private let advertiser: MCNearbyServiceAdvertiser
 

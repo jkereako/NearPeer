@@ -107,7 +107,7 @@ final public class PeerKit {
 }
 
 // MARK: - SessionDelegate
-extension PeerKit: SessionDelegate {
+extension PeerKit: SessionManagerDelegate {
     public func isConnecting(toPeer peer: MCPeerID) {
         DispatchQueue.main.async { [unowned self] in
             self.delegate?.peerKit(self, isConnectingToPeer: peer)
@@ -140,7 +140,7 @@ extension PeerKit: SessionDelegate {
 }
 
 // MARK: - AdvertiserDelegate
-extension PeerKit: AdvertiserDelegate {
+extension PeerKit: AdvertiserManagerDelegate {
     func didAcceptInvitation(fromPeer peer: MCPeerID) {
         DispatchQueue.main.async { [unowned self] in
             self.delegate?.peerKit(self, didAcceptInvitationFromPeer: peer)
@@ -161,7 +161,7 @@ extension PeerKit: AdvertiserDelegate {
 }
 
 // MARK: - BrowserDelegate
-extension PeerKit: BrowserDelegate {
+extension PeerKit: BrowserManagerDelegate {
     func didFailToBrowse(error: Error) {
         DispatchQueue.main.async { [unowned self] in
             self.delegate?.peerKit(self, didFailToBrowse: error)

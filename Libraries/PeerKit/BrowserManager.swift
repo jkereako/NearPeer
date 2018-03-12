@@ -9,7 +9,7 @@
 import MultipeerConnectivity
 
 final class BrowserManager: NSObject {
-    weak var delegate: BrowserDelegate?
+    weak var delegate: BrowserManagerDelegate?
     private let sessionManager: SessionManager
     private let nearbyServiceBrowser: MCNearbyServiceBrowser
     private let peerInvitationTimeout: Double = 30

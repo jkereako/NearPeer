@@ -9,7 +9,7 @@
 import MultipeerConnectivity
 
 final class SessionManager: NSObject {
-    weak var delegate: SessionDelegate?
+    weak var delegate: SessionManagerDelegate?
     var myPeerID: MCPeerID { return session.myPeerID }
     var connectedPeers: [MCPeerID] { return session.connectedPeers }
     let session: MCSession
