@@ -8,16 +8,16 @@
 
 import MultipeerConnectivity
 
-final class Browser: NSObject {
+final class BrowserManager: NSObject {
     weak var delegate: BrowserDelegate?
-    private let session: Session
+    private let sessionManager: SessionManager
     private let nearbyServiceBrowser: MCNearbyServiceBrowser
     private let peerInvitationTimeout: Double = 30
 
-    init(session: Session) {
-        self.session = session
+    init(sessionManager: SessionManager) {
+        self.sessionManager = sessionManager
         nearbyServiceBrowser = MCNearbyServiceBrowser(
-            peer: session.myPeerID, serviceType: session.serviceName
+            peer: sessionManager.myPeerID, serviceType: sessionManager.serviceName
         )
 
         super.init()
@@ -43,7 +43,7 @@ final class Browser: NSObject {
 }
 
 // MARK: - MCNearbyServiceBrowserDelegate
-extension Browser: MCNearbyServiceBrowserDelegate {
+extension BrowserManager: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID,
                  withDiscoveryInfo info: [String : String]?) {
         #if DEBUG
@@ -51,7 +51,7 @@ extension Browser: MCNearbyServiceBrowserDelegate {
         #endif
 
         browser.invitePeer(
-            peerID, to: session.underlyingSession, withContext: nil, timeout: peerInvitationTimeout
+            peerID, to: sessionManager.session, withContext: nil, timeout: peerInvitationTimeout
         )
     }
 

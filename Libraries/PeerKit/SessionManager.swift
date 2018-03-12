@@ -1,5 +1,5 @@
 //
-//  Session.swift
+//  SessionManager.swift
 //  PeerKit
 //
 //  Created by Jeff Kereakoglow on 3/10/18.
@@ -8,24 +8,24 @@
 
 import MultipeerConnectivity
 
-final class Session: NSObject {
+final class SessionManager: NSObject {
     weak var delegate: SessionDelegate?
-    var myPeerID: MCPeerID { return underlyingSession.myPeerID }
-    var connectedPeers: [MCPeerID] { return underlyingSession.connectedPeers }
-    let underlyingSession: MCSession
+    var myPeerID: MCPeerID { return session.myPeerID }
+    var connectedPeers: [MCPeerID] { return session.connectedPeers }
+    let session: MCSession
     let serviceName: String
     
     init(displayName: String, serviceName: String) {
         self.serviceName = serviceName
 
         let myPeerID = MCPeerID(displayName: displayName)
-        underlyingSession = MCSession(
+        session = MCSession(
             peer: myPeerID, securityIdentity: nil, encryptionPreference: .required
         )
         
         super.init()
         
-        underlyingSession.delegate = self
+        session.delegate = self
     }
 
     deinit {
@@ -37,13 +37,13 @@ final class Session: NSObject {
     
     func disconnect() {
         self.delegate = nil
-        underlyingSession.delegate = nil
-        underlyingSession.disconnect()
+        session.delegate = nil
+        session.disconnect()
     }
 }
 
 // MARK: - MCSessionDelegate
-extension Session: MCSessionDelegate {
+extension SessionManager: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID,
                  didChange state: MCSessionState) {
         switch state {

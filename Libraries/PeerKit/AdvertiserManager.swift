@@ -8,18 +8,17 @@
 
 import MultipeerConnectivity
 
-final class Advertiser: NSObject {
+final class AdvertiserManager: NSObject {
     weak var delegate: AdvertiserDelegate?
-    private let session: Session
+    private let sessionManager: SessionManager
     private let advertiser: MCNearbyServiceAdvertiser
 
-    init(session: Session) {
-        self.session = session
+    init(sessionManager: SessionManager) {
+        self.sessionManager = sessionManager
         advertiser = MCNearbyServiceAdvertiser(
-            // REVIEW: Could I replace this with `session.myPeerID`?
-            peer: session.underlyingSession.myPeerID,
+            peer: sessionManager.myPeerID,
             discoveryInfo: nil,
-            serviceType: session.serviceName
+            serviceType: sessionManager.serviceName
         )
 
         super.init()
@@ -44,14 +43,14 @@ final class Advertiser: NSObject {
 }
 
 // MARK: - MCNearbyServiceAdvertiserDelegate
-extension Advertiser: MCNearbyServiceAdvertiserDelegate {
+extension AdvertiserManager: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser,
                     didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?,
                     invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         
-        let accept = session.myPeerID.hashValue > peerID.hashValue
+        let accept = sessionManager.myPeerID.hashValue > peerID.hashValue
 
-        invitationHandler(accept, session.underlyingSession)
+        invitationHandler(accept, sessionManager.session)
 
         if accept {
             delegate?.didAcceptInvitation(fromPeer: peerID)

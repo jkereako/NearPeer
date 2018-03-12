@@ -14,9 +14,9 @@ final public class PeerKit {
     public weak var delegate: PeerKitDelegate?
     public let serviceName: String
     let displayName: String
-    let session: Session
-    let advertiser: Advertiser
-    let browser: Browser
+    let sessionManager: SessionManager
+    let advertiserManager: AdvertiserManager
+    let browserManager: BrowserManager
     
     public init(serviceName: String) {
         // The service name must meet the restrictions of RFC 6335:
@@ -55,13 +55,13 @@ final public class PeerKit {
             displayName = Host.current().localizedName ?? ""
         #endif
         self.serviceName = serviceName
-        session = Session(displayName: displayName, serviceName: serviceName)
-        advertiser = Advertiser(session: session)
-        browser = Browser(session: session)
+        sessionManager = SessionManager(displayName: displayName, serviceName: serviceName)
+        advertiserManager = AdvertiserManager(sessionManager: sessionManager)
+        browserManager = BrowserManager(sessionManager: sessionManager)
         
-        session.delegate = self
-        advertiser.delegate = self
-        browser.delegate = self
+        sessionManager.delegate = self
+        advertiserManager.delegate = self
+        browserManager.delegate = self
     }
     
     deinit {
@@ -70,22 +70,22 @@ final public class PeerKit {
     }
     
     public func advertise() {
-        advertiser.start()
+        advertiserManager.start()
     }
     
     public func browse() {
-        browser.start()
+        browserManager.start()
     }
     
     public func stop() {
-        session.delegate = nil
-        advertiser.stop()
-        browser.stop()
-        session.disconnect()
+        sessionManager.delegate = nil
+        advertiserManager.stop()
+        browserManager.stop()
+        sessionManager.disconnect()
     }
 
     public func sendEvent(_ event: String, withObject object: AnyObject? = nil) {
-        let peers = session.underlyingSession.connectedPeers
+        let peers = sessionManager.session.connectedPeers
         var rootObject: [String: AnyObject] = ["event": event as AnyObject]
         
         if let object: AnyObject = object {
@@ -95,7 +95,7 @@ final public class PeerKit {
         let data = NSKeyedArchiver.archivedData(withRootObject: rootObject)
         
         do {
-            try session.underlyingSession.send(data, toPeers: peers, with: .reliable)
+            try sessionManager.session.send(data, toPeers: peers, with: .reliable)
         } catch {
             DispatchQueue.main.async { [unowned self] in
                 self.delegate?.peerKit(self, didFailToSendEvent: event, toPeers: peers)
