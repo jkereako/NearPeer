@@ -19,6 +19,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController" customModule="NearPeer" customModuleProvider="target">
             <connections>
+                <outlet property="message" destination="EOV-Du-XB2" id="99M-0e-492"/>
                 <outlet property="serviceName" destination="G4h-hh-K1h" id="SVs-gf-v1S"/>
                 <outlet property="status" destination="n0X-vy-kLA" id="aAa-Tc-cTp"/>
                 <outlet property="view" destination="iN0-l3-epB" id="7J5-Bg-sGL"/>

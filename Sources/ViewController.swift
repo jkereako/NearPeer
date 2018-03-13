@@ -12,6 +12,7 @@ import PeerKit
 final class ViewController: UIViewController {
     @IBOutlet weak private var serviceName: UILabel!
     @IBOutlet weak private var status: UILabel!
+    @IBOutlet weak private var message: UITextField!
 
     // Hold on to a reference to keep it alive
     private let peerKit: PeerKit
@@ -35,6 +36,13 @@ final class ViewController: UIViewController {
         peerKit.advertise()
         peerKit.browse()
         status.text = "Advertising and browsing..."
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+
+        // Dismiss the keyboard if the user taps anywhere on the screen
+        view.endEditing(true)
     }
 }
 
@@ -80,6 +88,6 @@ extension ViewController: PeerKitDelegate {
 // MARK: - Target-actions
 private extension ViewController {
     @IBAction func sendEventAction(_ sender: UIButton) {
-        peerKit.sendMessage("Hello, world!")
+        peerKit.sendMessage(message.text ?? "")
     }
 }
