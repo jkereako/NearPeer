@@ -46,6 +46,10 @@ final class ViewController: UIViewController {
 
 // MARK: - SessionDelegate
 extension ViewController: PeerKitDelegate {
+    func peerKit(_ peerKit: PeerKit, shouldAcceptInvitationFromPeer peer: MCPeerID) -> Bool {
+        return true
+    }
+
     func peerKit(_ peerKit: PeerKit, didAcceptInvitationFromPeer peer: MCPeerID) {
         status.text = "Accepted invitation from \(peer.displayName)"
     }
@@ -85,6 +89,11 @@ extension ViewController: PeerKitDelegate {
 
 // MARK: - Target-actions
 private extension ViewController {
+    @IBAction func disconnectAction(_ sender: UIButton) {
+        status.text = "Disconnected"
+        peerKit.stopSession()
+    }
+
     @IBAction func advertiseAction(_ sender: UIButton) {
         guard !peerKit.isAdvertising else {
             peerKit.stopAdvertising()

@@ -13,6 +13,7 @@ public protocol PeerKitDelegate: class {
     func peerKit(_ peerKit: PeerKit, isConnectingToPeer peer: MCPeerID)
     func peerKit(_ peerKit: PeerKit, didConnectToPeer peer: MCPeerID)
     func peerKit(_ peerKit: PeerKit, didDisconnectFromPeer peer: MCPeerID)
+    func peerKit(_ peerKit: PeerKit, shouldAcceptInvitationFromPeer peer: MCPeerID) -> Bool
     func peerKit(_ peerKit: PeerKit, didAcceptInvitationFromPeer peer: MCPeerID)
     func peerKit(_ peerKit: PeerKit, didRejectInvitationFromPeer peer: MCPeerID)
     func peerKit(_ peerKit: PeerKit, didFailToAdvertise error: Error)

@@ -10,6 +10,7 @@ import MultipeerConnectivity
 
 protocol AdvertiserManagerDelegate: class {
     func didFailToAdvertise(error: Error)
+    func shouldAcceptInvitation(fromPeer peer: MCPeerID) -> Bool
     func didAcceptInvitation(fromPeer peer: MCPeerID)
     func didRejectInvitation(fromPeer peer: MCPeerID)
 }

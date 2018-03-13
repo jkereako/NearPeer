@@ -76,11 +76,13 @@ final public class PeerKit {
     
     public func startAdvertising() {
         isAdvertising = true
+        sessionManager.start()
         advertiserManager.start()
     }
     
     public func startBrowsing() {
         isBrowsing = true
+        sessionManager.start()
         browserManager.start()
     }
 
@@ -93,12 +95,9 @@ final public class PeerKit {
         isAdvertising = false
         advertiserManager.stop()
     }
-    
-    public func stop() {
-        sessionManager.delegate = nil
-        advertiserManager.stop()
-        browserManager.stop()
-        sessionManager.disconnect()
+
+    public func stopSession() {
+        sessionManager.stop()
     }
 
     public func sendMessage(_ message: String) {
@@ -149,6 +148,10 @@ extension PeerKit: SessionManagerDelegate {
 
 // MARK: - AdvertiserDelegate
 extension PeerKit: AdvertiserManagerDelegate {
+    func shouldAcceptInvitation(fromPeer peer: MCPeerID) -> Bool {
+        return self.delegate?.peerKit(self, shouldAcceptInvitationFromPeer: peer) ?? false
+    }
+
     func didAcceptInvitation(fromPeer peer: MCPeerID) {
         DispatchQueue.main.async { [unowned self] in
             self.delegate?.peerKit(self, didAcceptInvitationFromPeer: peer)

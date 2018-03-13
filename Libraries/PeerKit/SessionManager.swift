@@ -34,9 +34,12 @@ final class SessionManager: NSObject {
             print("Deinit \(url.lastPathComponent)")
         #endif
     }
-    
-    func disconnect() {
-        self.delegate = nil
+
+    func start() {
+        session.delegate = self
+    }
+
+    func stop() {
         session.delegate = nil
         session.disconnect()        
     }
