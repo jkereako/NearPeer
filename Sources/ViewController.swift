@@ -108,7 +108,7 @@ private extension ViewController {
             return
         }
 
-        sender.setTitle("STOP ADVERTISING", for: .normal)
+        sender.setTitle("ADVERTISING", for: .normal)
         peerKit.startAdvertising()
         status.text = "Advertising"
 
@@ -131,7 +131,7 @@ private extension ViewController {
             return
         }
 
-        sender.setTitle("STOP BROWSING", for: .normal)
+        sender.setTitle("BROWSING", for: .normal)
         peerKit.startBrowsing()
         status.text = "Browsing"
 
