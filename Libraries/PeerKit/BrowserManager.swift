@@ -21,8 +21,6 @@ final class BrowserManager: NSObject {
         )
 
         super.init()
-
-        nearbyServiceBrowser.delegate = self
     }
 
     deinit {
@@ -33,6 +31,7 @@ final class BrowserManager: NSObject {
     }
 
     func start() {
+        nearbyServiceBrowser.delegate = self
         nearbyServiceBrowser.startBrowsingForPeers()
     }
 

@@ -13,6 +13,9 @@
 final public class PeerKit {
     public weak var delegate: PeerKitDelegate?
     public let serviceName: String
+    public var isAdvertising: Bool
+    public var isBrowsing: Bool
+
     let displayName: String
     let sessionManager: SessionManager
     let advertiserManager: AdvertiserManager
@@ -58,7 +61,9 @@ final public class PeerKit {
         sessionManager = SessionManager(displayName: displayName, serviceName: serviceName)
         advertiserManager = AdvertiserManager(sessionManager: sessionManager)
         browserManager = BrowserManager(sessionManager: sessionManager)
-        
+
+        isAdvertising = false
+        isBrowsing = false
         sessionManager.delegate = self
         advertiserManager.delegate = self
         browserManager.delegate = self
@@ -69,12 +74,24 @@ final public class PeerKit {
         print("Deinit \(url.lastPathComponent)")
     }
     
-    public func advertise() {
+    public func startAdvertising() {
+        isAdvertising = true
         advertiserManager.start()
     }
     
-    public func browse() {
+    public func startBrowsing() {
+        isBrowsing = true
         browserManager.start()
+    }
+
+    public func stopBrowsing() {
+        isBrowsing = false
+        browserManager.stop()
+    }
+
+    public func stopAdvertising() {
+        isAdvertising = false
+        advertiserManager.stop()
     }
     
     public func stop() {

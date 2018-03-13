@@ -38,7 +38,7 @@ final class SessionManager: NSObject {
     func disconnect() {
         self.delegate = nil
         session.delegate = nil
-        session.disconnect()
+        session.disconnect()        
     }
 }
 

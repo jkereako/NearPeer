@@ -33,9 +33,7 @@ final class ViewController: UIViewController {
         self.serviceName.text = peerKit.serviceName
 
         peerKit.delegate = self
-        peerKit.advertise()
-        peerKit.browse()
-        status.text = "Advertising and browsing..."
+        status.text = "Waiting for input..."
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -87,7 +85,53 @@ extension ViewController: PeerKitDelegate {
 
 // MARK: - Target-actions
 private extension ViewController {
-    @IBAction func sendEventAction(_ sender: UIButton) {
+    @IBAction func advertiseAction(_ sender: UIButton) {
+        guard !peerKit.isAdvertising else {
+            peerKit.stopAdvertising()
+            sender.setTitle("ADVERTISE", for: .normal)
+
+            status.text = "Waiting for input..."
+
+            if peerKit.isBrowsing {
+                status.text = "Browsing..."
+            }
+
+            return
+        }
+
+        sender.setTitle("STOP ADVERTISING", for: .normal)
+        peerKit.startAdvertising()
+        status.text = "Advertising"
+
+        if peerKit.isBrowsing {
+            status.text = "Advertising and Browsing..."
+        }
+    }
+
+    @IBAction func browseAction(_ sender: UIButton) {
+        guard !peerKit.isBrowsing else {
+            peerKit.stopBrowsing()
+            sender.setTitle("BROWSE", for: .normal)
+
+            status.text = "Waiting for input..."
+
+            if peerKit.isAdvertising {
+                status.text = "Advertising..."
+            }
+
+            return
+        }
+
+        sender.setTitle("STOP BROWSING", for: .normal)
+        peerKit.startBrowsing()
+        status.text = "Browsing"
+
+        if peerKit.isAdvertising {
+            status.text = "Advertising and Browsing..."
+        }
+    }
+
+    @IBAction func sendMessageAction(_ sender: UIButton) {
         peerKit.sendMessage(message.text ?? "")
     }
 }
