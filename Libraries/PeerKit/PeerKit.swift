@@ -84,24 +84,16 @@ final public class PeerKit {
         sessionManager.disconnect()
     }
 
-    public func sendEvent(_ event: String, withObject object: AnyObject? = nil) {
+    public func sendMessage(_ message: String) {
         let peers = sessionManager.session.connectedPeers
-        var rootObject: [String: AnyObject] = ["event": event as AnyObject]
-        
-        if let object: AnyObject = object {
-            rootObject["object"] = object
-        }
-        
-        let data = NSKeyedArchiver.archivedData(withRootObject: rootObject)
-        
+        let archivedData = NSKeyedArchiver.archivedData(withRootObject: message)
+
         do {
-            try sessionManager.session.send(data, toPeers: peers, with: .reliable)
+            try self.sessionManager.session.send(archivedData, toPeers: peers, with: .reliable)
         } catch {
             DispatchQueue.main.async { [unowned self] in
-                self.delegate?.peerKit(self, didFailToSendEvent: event, toPeers: peers)
+                self.delegate?.peerKit(self, didFailToSendMessage: message, toPeers: peers)
             }
-
-            print("\(error)")
         }
     }
 }
@@ -127,14 +119,13 @@ extension PeerKit: SessionManagerDelegate {
     }
     
     public func didReceiveData(data: Data, fromPeer peer: MCPeerID) {
-        guard let dict = NSKeyedUnarchiver.unarchiveObject(with: data) as? [String: AnyObject],
-            let event = dict["event"] as? String else {
-                assertionFailure("Expected an event")
-                return
+        guard let message = NSKeyedUnarchiver.unarchiveObject(with: data) as? String else {
+            assertionFailure("Expected a String")
+            return
         }
-        
+
         DispatchQueue.main.async { [unowned self] in
-            self.delegate?.peerKit(self, didReceiveEvent: event, withObject: dict["object"] )
+            self.delegate?.peerKit(self, didReceiveMessage: message)
         }
     }
 }

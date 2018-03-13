@@ -60,8 +60,8 @@ extension ViewController: PeerKitDelegate {
         status.text = "Disconnected from \(peer.displayName)"
     }
 
-    func peerKit(_ peerKit: PeerKit, didReceiveEvent event: String, withObject object: AnyObject?) {
-        status.text = "Received event \(event)"
+    func peerKit(_ peerKit: PeerKit, didReceiveMessage message: String) {
+        status.text = "Received message: \"\(message)\""
     }
 
     func peerKit(_ peerKit: PeerKit, didFailToBrowse error: Error) {
@@ -72,14 +72,14 @@ extension ViewController: PeerKitDelegate {
         status.text = "Failed to advertise"
     }
 
-    func peerKit(_ peerKit: PeerKit, didFailToSendEvent event: String, toPeers peers: [MCPeerID]) {
-        status.text = "Failed to send event \(event)"
+    func peerKit(_ peerKit: PeerKit, didFailToSendMessage message: String, toPeers peers: [MCPeerID]) {
+        status.text = "Failed to send message \"\(message)\""
     }
 }
 
 // MARK: - Target-actions
 private extension ViewController {
     @IBAction func sendEventAction(_ sender: UIButton) {
-        peerKit.sendEvent("Greeting")
+        peerKit.sendMessage("Hello, world!")
     }
 }

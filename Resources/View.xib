@@ -30,41 +30,53 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4h-hh-K1h">
-                    <rect key="frame" x="121.5" y="269.5" width="133.5" height="27.5"/>
+                    <rect key="frame" x="121.5" y="84" width="133.5" height="27.5"/>
                     <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="20"/>
                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected to Jeff's iPhone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0X-vy-kLA">
-                    <rect key="frame" x="16" y="329" width="343" height="29"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected to Jeff's iPhone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0X-vy-kLA">
+                    <rect key="frame" x="16" y="143.5" width="343" height="29"/>
                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="21"/>
                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ck5-tg-Xzf">
-                    <rect key="frame" x="16" y="422" width="343" height="50"/>
+                    <rect key="frame" x="16" y="252.5" width="343" height="48"/>
                     <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="GaV-GK-hBa"/>
+                        <constraint firstAttribute="height" constant="48" id="GaV-GK-hBa"/>
                     </constraints>
-                    <state key="normal" title="Send Event">
+                    <state key="normal" title="Send Message">
                         <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="sendEventAction:" destination="-1" eventType="touchUpInside" id="qtT-vp-6eA"/>
                     </connections>
                 </button>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EOV-Du-XB2">
+                    <rect key="frame" x="16" y="188.5" width="343" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="2fx-iW-G0B"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="ck5-tg-Xzf" firstAttribute="top" secondItem="n0X-vy-kLA" secondAttribute="bottom" constant="64" id="3vK-eV-Mge"/>
                 <constraint firstItem="n0X-vy-kLA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="FKf-e7-P44"/>
-                <constraint firstItem="n0X-vy-kLA" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="Lko-TY-uh5"/>
+                <constraint firstItem="EOV-Du-XB2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="L4m-9R-D9m"/>
+                <constraint firstItem="EOV-Du-XB2" firstAttribute="top" secondItem="n0X-vy-kLA" secondAttribute="bottom" constant="16" id="N4F-7f-Ooi"/>
+                <constraint firstItem="G4h-hh-K1h" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="64" id="Sa2-Hz-drI"/>
                 <constraint firstAttribute="trailingMargin" secondItem="ck5-tg-Xzf" secondAttribute="trailing" id="b3w-6M-eGK"/>
                 <constraint firstAttribute="trailingMargin" secondItem="n0X-vy-kLA" secondAttribute="trailing" id="fpx-uP-NPu"/>
                 <constraint firstItem="G4h-hh-K1h" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="fsF-lo-87d"/>
+                <constraint firstItem="ck5-tg-Xzf" firstAttribute="top" secondItem="EOV-Du-XB2" secondAttribute="bottom" constant="16" id="iiu-dI-50g"/>
                 <constraint firstItem="ck5-tg-Xzf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="nTs-P5-eq9"/>
                 <constraint firstItem="n0X-vy-kLA" firstAttribute="top" secondItem="G4h-hh-K1h" secondAttribute="bottom" constant="32" id="nbj-8M-hu0"/>
+                <constraint firstAttribute="trailingMargin" secondItem="EOV-Du-XB2" secondAttribute="trailing" id="v1a-5S-4sH"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>

@@ -48,8 +48,8 @@ extension AdvertiserManager: MCNearbyServiceAdvertiserDelegate {
                     didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?,
                     invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         
-        let accept = sessionManager.myPeerID.hashValue > peerID.hashValue
-
+        let accept = sessionManager.session.connectedPeers.contains(peerID)
+        
         invitationHandler(accept, sessionManager.session)
 
         if accept {
