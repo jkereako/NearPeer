@@ -47,8 +47,9 @@ extension AdvertiserManager: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser,
                     didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?,
                     invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        
-        let accept = sessionManager.session.connectedPeers.contains(peerID)
+
+        // Automatically connect to all non-connected peers
+        let accept = !sessionManager.session.connectedPeers.contains(peerID)
         
         invitationHandler(accept, sessionManager.session)
 
